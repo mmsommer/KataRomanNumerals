@@ -1,21 +1,28 @@
 module Converters
   class RomanNumeralConverter
-    def convert_to_roman(number)
-      defaults[number]
+    def convert_to_roman(roman)
+      roman = roman.chars.to_a
+
+      case
+        when roman.empty?
+          0
+        when roman.size == 1
+          ROMAN[roman.shift]
+        else
+          ROMAN[roman.shift] + convert_to_roman(roman.join)
+      end
     end
 
     private
 
-    def defaults
-      {
-          1 => 'I',
-          5 => 'V',
-          10 => 'X',
-          50 => 'L',
-          100 => 'C',
-          500 => 'D',
-          1000 => 'M'
-      }
-    end
+    ROMAN = {
+      'I' => 1,
+      'V' => 5,
+      'X' => 10,
+      'L' => 50,
+      'C' => 100,
+      'D' => 500,
+      'M' => 1000
+    }
   end
 end
