@@ -50,5 +50,11 @@ describe 'Roman Numeral Converter' do
         converter.convert_to_roman('IV').should eql 4
       end
     end
+
+    context 'Now a hard one: MCMLXXXIV' do
+      it 'should convert to 1984' do
+        converter.convert_to_roman('MCMLXXXIV').should eql 1984
+      end
+    end
   end
 end
