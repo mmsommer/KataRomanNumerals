@@ -44,5 +44,11 @@ describe 'Roman Numeral Converter' do
         converter.convert_to_roman('VII').should eql 7
       end
     end
+
+    context 'Extra roman number on the left' do
+      it 'should convert IV to 4' do
+        converter.convert_to_roman('IV').should eql 4
+      end
+    end
   end
 end

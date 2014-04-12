@@ -8,6 +8,8 @@ module Converters
           0
         when roman.size == 1
           ROMAN[roman.shift]
+        when ROMAN[roman[0]] < ROMAN[roman[1]]
+          -ROMAN[roman.shift] + convert_to_roman(roman.join)
         else
           ROMAN[roman.shift] + convert_to_roman(roman.join)
       end
