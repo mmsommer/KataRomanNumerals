@@ -21,10 +21,15 @@ module Converters
       result = ''
       while rest > 0
         best_fit = best_fit_roman_numeral(rest)
-        the_one_after = roman_numeral_after(best_fit)
-        if !the_one_after.nil?
+        one_larger = roman_numeral_larger_than(best_fit)
+        one_lower = roman_numeral_less_than(best_fit)
+        if !one_lower.nil? && [1,10,100].include?(ROMAN[one_lower])
+          temp_rest = rest + ROMAN[one_lower]
+          best_fit = one_lower + one_larger if best_fit_roman_numeral(temp_rest) == one_larger
+        end
+        if !one_larger.nil? && [5,50,500].include?(ROMAN[one_larger])
           temp_rest = rest + ROMAN[best_fit]
-          best_fit = best_fit + the_one_after if best_fit_roman_numeral(temp_rest) == the_one_after
+          best_fit = best_fit + one_larger if best_fit_roman_numeral(temp_rest) == one_larger
         end
         result += best_fit
         rest -= convert_to_digit(best_fit)
@@ -50,8 +55,16 @@ module Converters
       ROMAN[roman] != ROMAN.values.last
     end
 
-    def roman_numeral_after(roman)
+    def is_first?(roman)
+      ROMAN[roman] != ROMAN.values.first
+    end
+
+    def roman_numeral_larger_than(roman)
       is_last?(roman) ? ROMAN.key(ROMAN.values[index_of(roman) + 1]) : nil
+    end
+
+    def roman_numeral_less_than(roman)
+      is_first?(roman) ? ROMAN.key(ROMAN.values[index_of(roman) - 1]) : nil
     end
 
     ROMAN = {

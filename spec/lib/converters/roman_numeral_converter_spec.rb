@@ -105,6 +105,14 @@ describe 'Roman Numeral Converter' do
       it 'should convert 4 to IV' do
         converter.convert_to_roman(4).should eql 'IV'
       end
+
+      it 'should covert 9 to IX' do
+        converter.convert_to_roman(9).should eql 'IX'
+      end
+
+      it 'should convert 14 to XIV' do
+        converter.convert_to_roman(14).should eql 'XIV'
+      end
     end
   end
 
