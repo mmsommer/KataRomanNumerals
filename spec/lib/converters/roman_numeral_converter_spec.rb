@@ -97,6 +97,14 @@ describe 'Roman Numeral Converter' do
       it 'should convert 1001 to MI' do
         converter.convert_to_roman(1001).should eql 'MI'
       end
+
+      it 'should convert 3 to III' do
+        converter.convert_to_roman(3).should eql 'III'
+      end
+
+      it 'should convert 4 to IV' do
+        converter.convert_to_roman(4).should eql 'IV'
+      end
     end
   end
 

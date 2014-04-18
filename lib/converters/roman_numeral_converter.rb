@@ -21,8 +21,13 @@ module Converters
       result = ''
       while rest > 0
         best_fit = best_fit_roman_numeral(rest)
+        the_one_after = roman_numeral_after(best_fit)
+        if !the_one_after.nil?
+          temp_rest = rest + ROMAN[best_fit]
+          best_fit = best_fit + the_one_after if best_fit_roman_numeral(temp_rest) == the_one_after
+        end
         result += best_fit
-        rest -= ROMAN[best_fit]
+        rest -= convert_to_digit(best_fit)
       end
       result
     end
@@ -33,6 +38,20 @@ module Converters
           ROMAN.key(value)
         end
       end.select { |value| !value.nil?}.first
+    end
+
+    private
+
+    def index_of(roman)
+      ROMAN.values.index(ROMAN[roman])
+    end
+
+    def is_last?(roman)
+      ROMAN[roman] != ROMAN.values.last
+    end
+
+    def roman_numeral_after(roman)
+      is_last?(roman) ? ROMAN.key(ROMAN.values[index_of(roman) + 1]) : nil
     end
 
     ROMAN = {
