@@ -16,7 +16,7 @@ module Converters
     end
 
     def convert_to_roman(digit)
-      'I'
+      ROMAN.key(digit)
     end
 
     private
