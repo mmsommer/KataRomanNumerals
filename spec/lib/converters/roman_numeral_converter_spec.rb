@@ -57,4 +57,12 @@ describe 'Roman Numeral Converter' do
       end
     end
   end
+
+  describe 'convert_to_roman' do
+    context 'simple roman numerals' do
+      it 'should convert 1 to I' do
+        converter.convert_to_roman(1).should eql 'I'
+      end
+    end
+  end
 end

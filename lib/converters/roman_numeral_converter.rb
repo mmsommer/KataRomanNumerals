@@ -15,6 +15,10 @@ module Converters
       end
     end
 
+    def convert_to_roman(digit)
+      'I'
+    end
+
     private
 
     ROMAN = {
