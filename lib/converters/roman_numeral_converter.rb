@@ -16,10 +16,24 @@ module Converters
     end
 
     def convert_to_roman(digit)
-      ROMAN.key(digit)
+      return ROMAN.key(digit) if ROMAN.value? digit
+      rest = digit
+      result = ''
+      while rest > 0
+        best_fit = best_fit_roman_numeral(rest)
+        result += best_fit
+        rest -= ROMAN[best_fit]
+      end
+      result
     end
 
-    private
+    def best_fit_roman_numeral(digit)
+      ROMAN.values.reverse.map do |value|
+        if digit / value >= 1
+          ROMAN.key(value)
+        end
+      end.select { |value| !value.nil?}.first
+    end
 
     ROMAN = {
       'I' => 1,

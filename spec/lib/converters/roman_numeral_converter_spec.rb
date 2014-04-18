@@ -88,5 +88,57 @@ describe 'Roman Numeral Converter' do
         converter.convert_to_roman(1000).should eql 'M'
       end
     end
+
+    context 'combined roman numerals' do
+      it 'should convert 2000 to MM' do
+        converter.convert_to_roman(2000).should eql 'MM'
+      end
+
+      it 'should convert 1001 to MI' do
+        converter.convert_to_roman(1001).should eql 'MI'
+      end
+    end
+  end
+
+  describe 'best_fit_roman_numeral' do
+    context 'exact matches' do
+      it 'should return I for 1' do
+        converter.best_fit_roman_numeral(1).should eql 'I'
+      end
+
+      it 'should return V for 5' do
+        converter.best_fit_roman_numeral(5).should eql 'V'
+      end
+
+      it 'should return X for 10' do
+        converter.best_fit_roman_numeral(10).should eql 'X'
+      end
+
+      it 'should return L for 50' do
+        converter.best_fit_roman_numeral(50).should eql 'L'
+      end
+
+      it 'should return C for 100' do
+        converter.best_fit_roman_numeral(100).should eql 'C'
+      end
+
+      it 'should return D for 500' do
+        converter.best_fit_roman_numeral(500).should eql 'D'
+      end
+
+      it 'should return M for 1000' do
+        converter.best_fit_roman_numeral(1000).should eql 'M'
+      end
+    end
+
+    context 'not exact matches' do
+      it 'should return I for 4' do
+        converter.best_fit_roman_numeral(4).should eql 'I'
+      end
+
+      it 'should return V for 9' do
+        converter.best_fit_roman_numeral(9).should eql 'V'
+      end
+    end
   end
 end
