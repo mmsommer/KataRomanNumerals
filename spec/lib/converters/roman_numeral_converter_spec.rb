@@ -114,6 +114,12 @@ describe 'Roman Numeral Converter' do
         converter.convert_to_roman(14).should eql 'XIV'
       end
     end
+
+    context 'Now a hard one: 1984' do
+      it 'should convert to 1984' do
+        converter.convert_to_roman(1984).should eql 'MCMLXXXIV'
+      end
+    end
   end
 
   describe 'best_fit_roman_numeral' do
